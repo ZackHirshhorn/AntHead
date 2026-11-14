@@ -30,7 +30,7 @@ def auto_specs(m,cl,entry_rule='near_bound',prefer=None,s_min=2.0,only=None,verb
         r,_,_=scan(m,F,e,s0,t=NUT_T,ndir=72)
         cands=[]
         for x in r:
-            if x['clean']<0.96 or x['wall']<0.85: continue
+            if x['clean']<0.96 or x['wall']<0.85 or x['L']>9.0: continue
             sp2=dict(sp,d=x['d'].tolist(),L=x['L']+1.2,extra=1.2)
             ap=min(approach(m,sp2,ext=(8,)))
             if ap<0.95: continue
