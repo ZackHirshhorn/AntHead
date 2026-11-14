@@ -13,6 +13,10 @@ def main_body_no_logo():
     m = trimesh.load(src); cx = (m.bounds[0][0] + m.bounds[1][0]) / 2
     # stock fan pocket is 29.4 wide (x), y 168.9..202.9, fan sits 5.7..15.7 mm behind the front face (z)
     M = to_mf(m) - box(cx-15.3, cx+15.3, 171.2, 202.4, 4.2, 16.4)
+    # The channel behind the pocket is only 27 mm wide (it locates the hotend mount), so a 3010 can't
+    # ride in from the back. Instead it goes in through the front before the grill: widen the front
+    # opening over the fan's height only. Top lip and the side-lip stubs above/below still hold the grill.
+    M = M - box(cx-15.3, cx+15.3, 171.2, 202.4, -1.0, 4.3)
     m1 = to_tm(M); print('  main body removed', round(m.volume - m1.volume, 1), 'mm3')
     return m1
 
