@@ -21,3 +21,4 @@ Update the following table with the information about your mod:
 | hartk | [Crossbow](/UserMods/hartk/crossbow) | mount to use the crossbow filament cutter | latest |
 || [Trident Umbilical](/UserMods/hartk/Trident_Umbilcal) | umbilical mount for trident| latest |
 | Suzuki | [WWG2 V0 Board Mount](/UserMods/WWG2_V0_Board_Mount/) | 4-point board mount for WWG2 on a Voron V0 | Version v96 |
+| ZackHirshhorn | [No Heat-Set Inserts](/UserMods/No_Heatset_Inserts/) | Every part that uses M3 heat-set inserts, converted to captive M3 square nuts or self-tap pilot holes | CAD v105 |
