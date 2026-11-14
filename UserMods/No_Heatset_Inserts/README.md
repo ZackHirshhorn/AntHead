@@ -1,9 +1,9 @@
 # AntHead – No Heat-Set Inserts (captive square nuts)
 
-Converted versions of the AntHead parts for a **Micron / Salad Fork with a stock Mini SB carriage, BMG extruder and TZ-V6 (2.0) hotend**. Every M3 heat-set insert is replaced with either:
+Insert-free versions of **every AntHead part in `STLs/` that uses M3 heat-set inserts**: all main bodies (O2 and Sherpa, SF/HF/UHF, every logo), all ducts, all hotend mounts, the BMG and G2 extruder parts, the board mounts, and the V2/Trident 2020 carriage and probe mounts. The original target build was a **Micron / Salad Fork with a stock Mini SB carriage, BMG extruder and TZ-V6 (2.0) hotend**, and its parts are listed below. Every M3 heat-set insert is replaced with either:
 
 * a **captive M3 square-nut slot** (DIN 562, 5.5 × 1.8 mm). Each slot is 5.7 × 2.0 mm and sits about 2 mm behind the face the screw enters from. The old 4.7 mm insert bore is filled back in to a 3.4 mm clearance hole, so the nut bears on solid plastic. Or
-* a **2.7 mm pilot hole** for an M3 screw to thread straight into the plastic. This is used only where the wall is too thin for a nut: the hotend-mount side plates (3.2–4.5 mm thick, with the heatsink bore right behind) and the toolhead-board bosses.
+* a **2.7 mm pilot hole** for an M3 screw to thread straight into the plastic. This is used only where no clean nut slot fits (one that exits to open air within 9 mm, with walls of at least ~0.8 mm). See the table under *All other parts* for where that applies.
 
 > The slots are sized for **square nuts**. A standard M3 hex nut (2.4 mm thick) will **not** fit in the 2.0 mm slots.
 
@@ -31,6 +31,27 @@ Only the insert locations were changed; every other surface is identical to the 
 These parts never had inserts, so print them from the stock `STLs/` folder: BMG `[a]_tensioner_arm_a_x1`, the grill, and the LED carrier / diffuser / light shield.
 
 **Carriage:** reuse your existing Mini SB carriage. It already has its inserts fitted and is the carriage the AntHead README specifies for Micron/Salad Fork. It lives in the Micron repo and is **not** converted here.
+
+## All other parts
+
+Same rules, same filenames as the stock `STLs/` tree, so pick files exactly as the [configurator](https://anthead.wizards-enclave.net/) or the stock README tells you.
+
+| Group | Files | Inserts replaced with |
+| --- | --- | --- |
+| Main bodies: O2 HF/UHF and all Sherpa (SF/HF/UHF), every logo | `STLs/Main_Bodies/` | 7 square-nut slots each, same positions as the O2 SF bodies |
+| Ducts HF / UHF (standard and HB92) | `STLs/Ducts/HF`, `STLs/Ducts/UHF` | 1 square-nut slot each |
+| Hotend mounts: Chube, Dragon Ace, Rapido, ReVolcano, Revo Voron (M3 and M2.5 versions) | `STLs/Hotends/` | pilot holes, like the TZ-V6/Dragon mounts (main-body side screws M3x6; M3 fan version needs M3x14 fan screws) |
+| G2 extruder: front body | `STLs/Extruders/G2/[a]_front_body_x1.stl` | square-nut slot for the tension thumb screw, at the **bottom** of the bore, with the bore above left open for the spring as in the stock design |
+| G2 extruder: PUG mount A | `STLs/Extruders/G2/pug_mount_a_x1.stl` | 1 square-nut slot |
+| G2 extruder: rear plate | `STLs/Extruders/G2/rear_plate.stl` | 2 pilot holes (board-mount screws, M3x6) |
+| G2 board mounts (Micron / 2020) | `STLs/Extruders/G2/Board Mounts/` | 1 square-nut slot + 1 pilot hole |
+| BMG board mount (2020) | `STLs/Extruders/BMG/…bmg_2020.stl` (both copies) | 2 pilot holes |
+| 2020 carriage, MGN9H / MGN12 (V2/Trident) | `STLs/2020_Carriage/mgn*_carriage_x1.stl` | the two 45° inserts → square-nut slots; the three straight ones → pilot holes |
+| 2020 carriage front plate | `STLs/2020_Carriage/carriage_front_plate_x1.stl` | 2 pilot holes: the M3x25 hotend-mount screws thread into about 8 mm of a 12 mm plate. The only nut slot that fits is a 14.6 mm channel out to the edge. |
+| Beacon/Cartographer mounts (2020) | `STLs/2020_Carriage/beacon_carto_*` | 2 square-nut slots |
+| Cartographer CNC carriage adapters | `STLs/2020_Carriage/Cartagrapher_CNC_Carriage_Adapter/` | 2 pilot holes |
+
+Parts with no inserts (grills, LEDs, belt retainer, BMG tension arm A, G2 tension arm / knob / PUG mount B / board spacer, bowden and LGX adapters) are unchanged: print them from the stock folder. The angled and pilot-hole conversions were placed automatically and checked in cross-section, but like the rest, **none of this is test-printed**.
 
 ## Hardware changes
 
@@ -71,6 +92,6 @@ pip install numpy trimesh manifold3d shapely scipy rtree matplotlib
 python3 UserMods/No_Heatset_Inserts/tools/generate.py --check
 ```
 
-`--check` also writes before/after cross-section images to `checks/`. The HF/UHF main bodies and ducts can be converted the same way by adding them to `generate.py`.
+`--check` also writes before/after cross-section images to `checks/`. Then run `tools/generate_rest.py` to convert all the other parts, and `tools/fan3010.py` for the 3010-fan variants.
 
 Based on AntHead (repo state of 2026-05-29, CAD v105). Licensed like the parent project (GPL-3.0).
